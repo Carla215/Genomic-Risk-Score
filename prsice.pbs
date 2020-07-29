@@ -1,0 +1,46 @@
+### Carla Smith 24/07/2020
+### Submit prsice commands to HPC
+### This is for 10 core traits, GRS project
+
+# PBS settings
+
+#PBS -lselect=1:ncpus=10:mem=120gb
+#PBS -lwalltime=72:0:0
+
+# Load modules for any applications
+module load anaconda3/personal
+source activate prsice
+
+# Change to the submission directory
+cd $PBS_O_WORKDIR
+
+# Run programme from command line
+
+
+
+
+/rds/general/user/cs3515/home/project3/prsice/PRSice_linux \
+--base /rds/general/user/cs3515/home/project3/prsice/prsice_input \
+--chr chr \
+--A1 a1 \
+--A2 a2 \
+--stat beta \
+--snp rsid \
+--bp bp \
+--pvalue pvalue \
+--target /rds/general/user/cs3515/projects/medbio-berlanga-group/live/data/project_data/UKB_data_blood_pressure_236/raw/genetics_files/sdata_latest_imputed/ukb_imp_chr#,/rds/general/user/cs3515/home/project3/data/new_fam.fam \
+--binary-target F \
+--keep /rds/general/user/cs3515/home/project3/prsice/ukb_qc/ukb_imp_chr1.QC.fam \
+--extract /rds/general/user/cs3515/home/project3/prsice/ukb_qc/ukb_imp_chr1.QC.bim \
+--pheno /rds/general/user/cs3515/home/project3/prsice/pheno_sex_f.22001 \
+--ignore-fid
+
+
+#also need to extract withdrew_consent
+
+
+
+
+
+
+--extract ukb_qc/ukb_imp_chr1.QC.bim,
