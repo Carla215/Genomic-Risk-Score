@@ -1,0 +1,37 @@
+### Carla Smith 21/07/2020
+### Submit plink commands to HPC
+### This is for 10 core traits, GRS project
+### Using modified .fam file
+
+# PBS settings
+
+#PBS -lselect=1:ncpus=10:mem=120gb
+#PBS -lwalltime=72:0:0
+
+# Load modules for any applications
+module load anaconda3/personal
+module load plink
+
+# Change to the submission directory
+cd $PBS_O_WORKDIR
+
+# Run programme from command line
+# basic QC for GWAS
+
+for i in {1..22}; 
+
+do
+
+plink \
+    --bfile sdata_latest_imputed/ukb_imp_chr$i \
+    --fam new_fam.fam \
+    --maf 0.01 \
+    --hwe 1e-6 \
+    --geno 0.01 \
+    --mind 0.01 \
+    --make-just-bim \
+    --make-just-fam \
+    --out ukb_qc/ukb_imp_chr$i.QC
+
+
+done
